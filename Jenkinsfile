@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Notify') {
             steps {
-                sh 'echo Building...'
+                echo 'foo bar baz'
                 emailext (
                     subject: "Hello from Jenkins",
                     body: """<p>Howdy.</p>
