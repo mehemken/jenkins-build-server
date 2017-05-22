@@ -1,14 +1,15 @@
 pipeline {
-    node any
+    agent any 
+
     stages {
-        stage('Notify') {
+        stage('Build') { 
+            steps { 
+                echo 'building'
+            }
+        }
+        stage('Test'){
             steps {
-                echo 'foo bar baz'
-                emailext (
-                    subject: "Hello from Jenkins",
-                    body: """<p>Howdy.</p>
-                    <p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'</p>
-                )
+                echo 'test'
             }
         }
     }
