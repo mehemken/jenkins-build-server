@@ -1,8 +1,5 @@
 pipeline {
     node any
-    triggers {
-        pollSCM('*/2 * * * *')
-    }
     stages {
         stage('Notify') {
             steps {
