@@ -1,11 +1,7 @@
 pipeline {
+    node any
     triggers {
         pollSCM('*/2 * * * *')
-    }
-    agent {
-        node {
-            label 'worker'
-        }
     }
     stages {
         stage('Notify') {
