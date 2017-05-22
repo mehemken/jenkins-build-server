@@ -1,24 +1,21 @@
 pipeline {
-    agent {
-        label 'worker'
-    }
     triggers {
         pollSCM('*/2 * * * *')
     }
+    agent {
+        node {
+            label 'worker'
+        }
+    }
     stages {
-        stage('Build') {
+        stage('Notify') {
             steps {
                 sh 'echo Building...'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'echo Testing...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'echo Deploying...'
+                emailext (
+                    subject: "Hello from Jenkins",
+                    body: """<p>Howdy.</p>
+                    <p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]'</p>
+                )
             }
         }
     }
